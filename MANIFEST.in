@@ -1,0 +1,3 @@
+
+recursive-exclude tests *
+include processy/cli/interface.txt

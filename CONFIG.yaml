@@ -1,0 +1,27 @@
+public_name: 'processy'
+interal_name: 'processy'
+version: '0.0.0-alpha.1'
+license: 'unlicensed'
+author: 'Felix Meyer-Wolters'
+author_email: 'felix@meyerwolters.de'
+maintainer: 'Felix Meyer-Wolters'
+maintainer_email: 'felix@meyerwolters.de'
+url: 'https://github.com/feluxe/processy'
+description: 'A popen wrapper.'
+keywords: popen, wraper
+interpreter: "python3.6"
+gemfury_env: "python"
+pypi:
+  install_requires: []
+  packages: ["processy"]
+  package_dir: {"processy": "processy"}
+  package_data: {}
+  py_modules: []
+  data_files: []
+  classifiers: []
+  platforms: ""
+  entry_points: {
+    "console_scripts": [],
+    "gui_scripts": []
+    }
+  tests_require: ['buildlib', 'wheel', 'pytest', 'setuptools']

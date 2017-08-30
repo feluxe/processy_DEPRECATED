@@ -28,7 +28,7 @@ class ProcResult(object):
         return_code: int = None,
         out: str = None,
         error: str = None,
-        ):
+    ):
         """"""
         self.return_code: int = return_code
         self.out: str = out
@@ -41,14 +41,14 @@ def run(
     verbose: bool = True,
     raise_err: bool = False,
     **popen_kwargs
-    ) -> ProcResult:
+) -> ProcResult:
     """"""
     out = None
     error = None
 
     default_kwargs = {
         'universal_newlines': True
-        }
+    }
 
     if return_stdout:
         default_kwargs.update({'stdout': sp.PIPE})
@@ -60,10 +60,13 @@ def run(
     if return_stdout and verbose:
         out = _print_and_return_lines_from_popen(p)
         error = p.communicate()[1]
+
     elif return_stdout and not verbose:
         out, error = p.communicate()
+
     elif not return_stdout and verbose:
         error = p.communicate()[1]
+
     elif not return_stdout and not verbose:
         error = p.communicate()[1]
 
@@ -76,4 +79,4 @@ def run(
         return_code=return_code,
         out=out,
         error=str(error)
-        )
+    )

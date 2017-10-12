@@ -33,7 +33,7 @@ def run(
     **popen_kwargs
 ) -> CompletedProcess:
     """
-    @cmd: The Popen command. Can be string or list. str is split via `shlex`.
+    @cmd: The Popen command.
     @verbose: Print the output to stdout if True. If False call runs quite.
     @return_stdout: Returns the output from stdout.
     @raise_error: If subprocess return code is not 0.
@@ -69,14 +69,14 @@ def run(
     elif not return_stdout and not verbose:
         error = p.communicate()[1]
 
-    return_code: int = p.wait()
+    returncode: int = p.wait()
 
-    if raise_err and return_code is not 0:
+    if raise_err and returncode is not 0:
         raise sp.CalledProcessError
 
     return CompletedProcess(
         args=cmd,
-        returncode=return_code,
+        returncode=returncode,
         stdout=out,
         stderr=str(error),
     )

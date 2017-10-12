@@ -48,7 +48,7 @@ def publish() -> None:
     print(h3('Publish Results'))
 
     for result in results:
-        print(result.return_msg)
+        print(result.summary)
 
 
 def execute() -> None:

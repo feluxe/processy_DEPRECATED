@@ -33,7 +33,7 @@ def run(
     **popen_kwargs
 ) -> CompletedProcess:
     """
-    @cmd: The Popen command.
+    @cmd: The Popen command. If it's a string shlex is used to split it.
     @verbose: Print the output to stdout if True. If False call runs quite.
     @return_stdout: Returns the output from stdout.
     @raise_error: If subprocess return code is not 0.

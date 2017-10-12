@@ -1,5 +1,8 @@
 import sys
+import shlex
+from typing import Union
 import subprocess as sp
+from subprocess import CompletedProcess
 
 
 def _print_and_return_lines_from_popen(p: sp.Popen) -> str:
@@ -22,27 +25,19 @@ def _print_lines_from_popen(p: sp.Popen) -> None:
         sys.stdout.write(c)
 
 
-class ProcResult(object):
-    def __init__(
-        self,
-        return_code: int = None,
-        out: str = None,
-        error: str = None,
-    ):
-        """"""
-        self.return_code: int = return_code
-        self.out: str = out
-        self.error: str = error
-
-
 def run(
-    cmd: list,
-    return_stdout: bool = False,
+    cmd: Union[list, str],
     verbose: bool = True,
+    return_stdout: bool = False,
     raise_err: bool = False,
     **popen_kwargs
-) -> ProcResult:
-    """"""
+) -> CompletedProcess:
+    """
+    @cmd: The Popen command. Can be string or list. str is split via `shlex`.
+    @verbose: Print the output to stdout if True. If False call runs quite.
+    @return_stdout: Returns the output from stdout.
+    @raise_error: If subprocess return code is not 0.
+    """
     out = None
     error = None
 
@@ -52,8 +47,12 @@ def run(
 
     if return_stdout:
         default_kwargs.update({'stdout': sp.PIPE})
+
     elif not return_stdout and not verbose:
         default_kwargs.update({'stdout': sp.DEVNULL})
+
+    if type(cmd) is str:
+        cmd = shlex.split(cmd)
 
     p: sp.Popen = sp.Popen(cmd, **default_kwargs, **popen_kwargs)
 
@@ -72,11 +71,12 @@ def run(
 
     return_code: int = p.wait()
 
-    if raise_err and return_code:
-        raise sp.CalledProcessError(return_code, cmd)
+    if raise_err and return_code is not 0:
+        raise sp.CalledProcessError
 
-    return ProcResult(
-        return_code=return_code,
-        out=out,
-        error=str(error)
+    return CompletedProcess(
+        args=cmd,
+        returncode=return_code,
+        stdout=out,
+        stderr=str(error),
     )

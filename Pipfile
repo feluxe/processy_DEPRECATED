@@ -14,8 +14,6 @@ buildlib = "==1.*"
 cmdinter = "==1.0.6"
 headlines = "==0.0.0a5"
 prmt = "==0.0.0a8"
-processy = "==1.0.0"
-py = "==1.4.34"
 "ruamel.yaml" = "==0.15.34"
 
 

@@ -44,9 +44,11 @@ def run(
     default_kwargs = {
         'universal_newlines': True
     }
+    if not verbose:
+        default_kwargs.update({'stdout': sp.PIPE, 'stderr': sp.PIPE})
 
     if return_stdout:
-        default_kwargs.update({'stdout': sp.PIPE, 'stderr': sp.PIPE})
+        default_kwargs.update({'stdout': sp.PIPE})
 
     elif not return_stdout and not verbose:
         default_kwargs.update({'stdout': sp.DEVNULL})

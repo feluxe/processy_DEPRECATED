@@ -46,7 +46,7 @@ def run(
     }
 
     if return_stdout:
-        default_kwargs.update({'stdout': sp.PIPE})
+        default_kwargs.update({'stdout': sp.PIPE, 'stderr': sp.PIPE})
 
     elif not return_stdout and not verbose:
         default_kwargs.update({'stdout': sp.DEVNULL})

@@ -29,7 +29,7 @@ def run(
     cmd: Union[list, str],
     verbose: bool = True,
     return_stdout: bool = False,
-    raise_err: bool = False,
+    raise_err: bool = True,
     **popen_kwargs
 ) -> CompletedProcess:
     """

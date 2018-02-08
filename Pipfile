@@ -10,7 +10,7 @@ name = "pypi"
 [dev-packages]
 
 pytest = "==3.2.0"
-buildlib = "==1.*"
+buildlib = "==1.0.4"
 cmdinter = "==1.0.6"
 headlines = "==0.0.0a5"
 prmt = "==0.0.0a8"

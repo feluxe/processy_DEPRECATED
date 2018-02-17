@@ -1,3 +1,8 @@
+# DEPRECATED
+
+In favor of the new subprocess.run() command.
+
+Since cmdinter was replaced by cmdi, processy became even less useful.
 
 # processy
 
